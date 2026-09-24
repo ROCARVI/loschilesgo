@@ -1,4 +1,4 @@
-// 1. Importar las funciones de Firebase (Regresamos a tu versión original 10.12.2)
+// 1. Importar las funciones de Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -17,7 +17,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// 4. Función principal: Lee datos y crea tarjetas. Ahora acepta "filtroCategoria"
+// 4. Función principal: Lee datos y crea tarjetas. Acepta "filtroCategoria"
 async function obtenerComercios(filtroCategoria = "Todos") {
     try {
         const contenedor = document.getElementById("lista-comercios");
@@ -106,19 +106,19 @@ async function obtenerComercios(filtroCategoria = "Todos") {
 // 5. Ejecutar la función principal al abrir la página (muestra todos)
 obtenerComercios("Todos");
 
-// 6. NUEVO: Darle vida a los botones del menú desplegable (Filtros)
+// 6. Darle vida a los botones del menú desplegable (Filtros)
 document.addEventListener('DOMContentLoaded', () => {
-    // Buscamos todos los enlaces que tengan la clase 'enlace-filtro' en el HTML
     const botonesFiltro = document.querySelectorAll('.enlace-filtro');
     
     botonesFiltro.forEach(boton => {
         boton.addEventListener('click', (evento) => {
-            evento.preventDefault(); // Evita que la página salte hacia arriba
+            evento.preventDefault(); 
             
-            // Obtenemos qué categoría presionó el usuario (ej: "Cafeterías")
-            const categoriaSeleccionada = evento.target.getAttribute('data-categoria');
+            // CORRECCIÓN AQUÍ: Tomamos el atributo directamente del botón, no del "target" del clic. 
+            // Así ignoramos si el usuario le dio clic al emoji o al texto.
+            const categoriaSeleccionada = boton.getAttribute('data-categoria');
             
-            // Llamamos a la función de Firebase pasándole el filtro
+            // Llamamos a la función
             obtenerComercios(categoriaSeleccionada);
             
             // Ocultar el menú móvil si estaba abierto
