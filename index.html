@@ -134,27 +134,27 @@
             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
         </button>
     </header>
-<div class="flex flex-col md:flex-row justify-between items-end mb-10 border-b border-gray-200 pb-4">
+
     <!-- Menú Móvil Desplegable -->
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 border-b border-gray-200 pb-4 gap-4">
-    <div>
-        <h2 class="text-3xl font-black text-gray-800">Directorio Local</h2>
-        <p class="text-gray-500 mt-2">Apoya el comercio de nuestro cantón.</p>
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 absolute w-full z-30 shadow-lg top-[73px]">
+        <div class="px-4 py-4 space-y-4 shadow-inner">
+            <a href="#" class="block font-semibold text-gray-700 hover:text-lc-green">Explorar</a>
+            <div class="border-t border-gray-100 pt-4">
+                <span class="block font-semibold text-gray-400 uppercase text-xs tracking-wider mb-2">Directorio</span>
+                <div class="grid grid-cols-2 gap-2 pl-2">
+                    <a href="#" class="text-gray-600 py-1 hover:text-lc-green">☕ Cafeterías</a>
+                    <a href="#" class="text-gray-600 py-1 hover:text-lc-green">⚽ Fútbol</a>
+                    <a href="#" class="text-gray-600 py-1 hover:text-lc-green">🏋️ Gimnasios</a>
+                    <a href="#" class="text-gray-600 py-1 hover:text-lc-green">🥤 Batidos</a>
+                </div>
+            </div>
+            <a href="#" class="block font-semibold text-gray-700 hover:text-lc-green border-t border-gray-100 pt-4">Eventos</a>
+            <button onclick="toggleModal('modal-descarga')" class="w-full mt-4 px-5 py-3 bg-lc-gold text-lc-dark rounded-xl font-bold flex items-center justify-center">
+                Descargar App
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            </button>
+        </div>
     </div>
-    
-    <!-- Filtros adaptados al nuevo Brand Kit -->
-    <div class="flex flex-wrap gap-2" id="contenedor-filtros">
-        <!-- El botón "Todos" inicia activo con el color lc-green -->
-        <button data-categoria="Todos" class="btn-filtro px-5 py-2 rounded-full text-sm font-bold shadow-sm transition-all duration-300 bg-lc-green text-white border-lc-green border">🌍 Todos</button>
-        
-        <!-- Los demás inician inactivos con borde gris -->
-        <button data-categoria="Comida / Restaurante" class="btn-filtro px-5 py-2 rounded-full text-sm font-bold shadow-sm transition-all duration-300 bg-white text-gray-600 border-gray-200 border hover:border-lc-green hover:text-lc-green">☕ Comidas</button>
-        
-        <button data-categoria="Bares / Comida" class="btn-filtro px-5 py-2 rounded-full text-sm font-bold shadow-sm transition-all duration-300 bg-white text-gray-600 border-gray-200 border hover:border-lc-green hover:text-lc-green">🍹 Bares</button>
-        
-        <button data-categoria="Deportes" class="btn-filtro px-5 py-2 rounded-full text-sm font-bold shadow-sm transition-all duration-300 bg-white text-gray-600 border-gray-200 border hover:border-lc-green hover:text-lc-green">⚽ Deportes</button>
-    </div>
-</div>
 
     <!-- CUERPO PRINCIPAL -->
     <main class="flex-grow relative z-10">
