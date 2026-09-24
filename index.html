@@ -4,7 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LosChilesGo - Explora y Descubre</title>
-<link rel="manifest" href="manifest.json">
+    
+    <!-- ========================================== -->
+    <!-- ETIQUETAS SEO PARA GOOGLE Y BING (NUEVO) -->
+    <!-- ========================================== -->
+    <meta name="description" content="Directorio comercial, turismo, naturaleza y eventos en el Cantón de Los Chiles, Alajuela, Costa Rica. Encuentra restaurantes, hoteles y negocios locales en LosChilesGo.">
+    <meta name="keywords" content="Los Chiles, Costa Rica, turismo, cantón 14, Alajuela, directorio comercial, restaurantes, frontera norte, LosChilesGo, app">
+    <meta name="author" content="LosChilesGo">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.loschilesgo.com/">
+    
+    <!-- Etiquetas Open Graph (Para cuando compartan el link en WhatsApp, Facebook, etc.) -->
+    <meta property="og:title" content="LosChilesGo - Explora y Descubre">
+    <meta property="og:description" content="Toda la información turística, comercio y naturaleza de Los Chiles en la palma de tu mano.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.loschilesgo.com/">
+    <!-- ========================================== -->
+    
+    <link rel="manifest" href="manifest.json">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;0,900;1,900&display=swap" rel="stylesheet">
     
@@ -96,7 +113,7 @@
         <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-gray-600">
             <a href="#" class="hover:text-lc-green transition-colors">Explorar</a>
             
-<!-- Menú Desplegable: Directorio -->
+            <!-- Menú Desplegable: Directorio -->
             <div class="relative group cursor-pointer py-2">
                 <div class="flex items-center hover:text-lc-green transition-colors">
                     Directorio
@@ -170,39 +187,15 @@
                 </div>
             </div>
             
-      <div class="w-full space-y-3">
-                    <!-- Nuevo Botón Único de Instalación PWA -->
-                    <button onclick="instalarApp()" class="w-full flex items-center justify-center py-4 px-4 bg-lc-green text-white rounded-xl hover:bg-green-800 transition-all font-bold shadow-lg transform hover:scale-105 duration-200">
-                        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                        Instalar en mi teléfono
-                    </button>
-                </div>
-        </nav>
-
-        <!-- Menú Hamburguesa Móvil -->
-        <button id="mobile-menu-btn" class="md:hidden text-gray-800 focus:outline-none p-2 rounded-lg hover:bg-gray-100">
-            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-        </button>
-    </header>
-
-    <!-- Menú Móvil Desplegable -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 absolute w-full z-30 shadow-lg top-[73px]">
-        <div class="px-4 py-4 space-y-4 shadow-inner">
-            <a href="#" class="block font-semibold text-gray-700 hover:text-lc-green">Explorar</a>
-            <div class="border-t border-gray-100 pt-4">
-                <span class="block font-semibold text-gray-400 uppercase text-xs tracking-wider mb-2">Directorio</span>
-                <div class="grid grid-cols-2 gap-2 pl-2">
-                    <a href="#" class="text-gray-600 py-1 hover:text-lc-green">☕ Cafeterías</a>
-                    <a href="#" class="text-gray-600 py-1 hover:text-lc-green">⚽ Fútbol</a>
-                    <a href="#" class="text-gray-600 py-1 hover:text-lc-green">🏋️ Gimnasios</a>
-                    <a href="#" class="text-gray-600 py-1 hover:text-lc-green">🥤 Batidos</a>
-                </div>
-            </div>
             <a href="#" class="block font-semibold text-gray-700 hover:text-lc-green border-t border-gray-100 pt-4">Eventos</a>
-            <button onclick="toggleModal('modal-descarga')" class="w-full mt-4 px-5 py-3 bg-lc-gold text-lc-dark rounded-xl font-bold flex items-center justify-center">
-                Descargar App
-                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-            </button>
+            
+            <div class="w-full space-y-3 mt-4">
+                <!-- Botón Único de Instalación PWA -->
+                <button onclick="instalarApp()" class="w-full flex items-center justify-center py-4 px-4 bg-lc-green text-white rounded-xl hover:bg-green-800 transition-all font-bold shadow-lg transform hover:scale-105 duration-200">
+                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    Instalar en mi teléfono
+                </button>
+            </div>
         </div>
     </div>
 
@@ -374,8 +367,8 @@
                 }, 200);
             }
         }
-// --- LÓGICA DE INSTALACIÓN PWA ---
         
+        // --- LÓGICA DE INSTALACIÓN PWA ---
         // 1. Registrar el Service Worker
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js')
@@ -399,14 +392,12 @@
                 toggleModal('modal-descarga'); // Cerramos el modal
             } else {
                 // FALLBACK IMPORTANTE PARA iPHONE O SI YA ESTÁ INSTALADA
-                // Apple no permite botones automáticos de instalación, hay que indicarle al usuario cómo hacerlo.
                 alert("Para instalar LosChilesGo:\n\n🍏 En iPhone (Safari): Toca el botón 'Compartir' (cuadrado con flecha hacia arriba) y selecciona 'Agregar a inicio'.\n\n🤖 En Android: Toca los 3 puntos del navegador y selecciona 'Instalar aplicación'.");
             }
         }
     </script>
 
     <!-- LÓGICA DE FIREBASE -->
-    <!-- Se enlazó tu archivo app.js externo -->
     <script type="module" src="app.js?v=1.0.1"></script>
 </body>
 </html>
