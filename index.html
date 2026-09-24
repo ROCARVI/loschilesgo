@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LosChilesGo - Explora y Descubre</title>
+<link rel="manifest" href="manifest.json">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;0,900;1,900&display=swap" rel="stylesheet">
     
@@ -95,26 +96,41 @@
         <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-gray-600">
             <a href="#" class="hover:text-lc-green transition-colors">Explorar</a>
             
-            <!-- Menú Desplegable: Directorio -->
+<!-- Menú Desplegable: Directorio -->
             <div class="relative group cursor-pointer py-2">
                 <div class="flex items-center hover:text-lc-green transition-colors">
                     Directorio
                     <svg class="w-4 h-4 ml-1 text-gray-400 group-hover:text-lc-green transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
-                <!-- Contenido del Dropdown -->
-                <div class="dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-1 w-48 bg-white shadow-xl rounded-2xl opacity-0 invisible scale-y-95 border border-gray-100 overflow-hidden z-50">
+                <!-- Contenido del Dropdown Actualizado -->
+                <div class="dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-1 w-56 bg-white shadow-xl rounded-2xl opacity-0 invisible scale-y-95 border border-gray-100 overflow-hidden z-50">
                     <div class="py-2">
-                        <a href="#" class="block px-5 py-3 text-sm text-gray-600 hover:bg-gray-50 hover:text-lc-green transition-colors font-medium flex items-center">
-                            <span class="text-lg mr-2">☕</span> Cafeterías
+                        <a href="#" data-categoria="Todos" class="enlace-filtro block px-5 py-3 text-sm text-gray-800 hover:bg-gray-50 hover:text-lc-green transition-colors font-bold flex items-center border-b border-gray-100">
+                            🌍 Ver Todos
                         </a>
-                        <a href="#" class="block px-5 py-3 text-sm text-gray-600 hover:bg-gray-50 hover:text-lc-green transition-colors font-medium flex items-center border-t border-gray-50">
-                            <span class="text-lg mr-2">⚽</span> Fútbol
+                        <a href="#" data-categoria="Comidas" class="enlace-filtro block px-5 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-lc-green transition-colors font-medium flex items-center">
+                            ☕ Comidas
                         </a>
-                        <a href="#" class="block px-5 py-3 text-sm text-gray-600 hover:bg-gray-50 hover:text-lc-green transition-colors font-medium flex items-center border-t border-gray-50">
-                            <span class="text-lg mr-2">🏋️</span> Gimnasios
+                        <a href="#" data-categoria="Cafeterías" class="enlace-filtro block px-5 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-lc-green transition-colors font-medium flex items-center">
+                            🍰 Cafeterías
                         </a>
-                        <a href="#" class="block px-5 py-3 text-sm text-gray-600 hover:bg-gray-50 hover:text-lc-green transition-colors font-medium flex items-center border-t border-gray-50">
-                            <span class="text-lg mr-2">🥤</span> Batidos
+                        <a href="#" data-categoria="Canchas" class="enlace-filtro block px-5 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-lc-green transition-colors font-medium flex items-center">
+                            ⚽ Canchas
+                        </a>
+                        <a href="#" data-categoria="Gimnasios" class="enlace-filtro block px-5 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-lc-green transition-colors font-medium flex items-center">
+                            🏋️ Gimnasios
+                        </a>
+                        <a href="#" data-categoria="Hospedajes" class="enlace-filtro block px-5 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-lc-green transition-colors font-medium flex items-center">
+                            🛏️ Hospedajes
+                        </a>
+                        <a href="#" data-categoria="Turismo" class="enlace-filtro block px-5 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-lc-green transition-colors font-medium flex items-center">
+                            🌿 Turismo
+                        </a>
+                        <a href="#" data-categoria="Panaderías" class="enlace-filtro block px-5 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-lc-green transition-colors font-medium flex items-center">
+                            🥖 Panaderías
+                        </a>
+                        <a href="#" data-categoria="Farmacias" class="enlace-filtro block px-5 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-lc-green transition-colors font-medium flex items-center">
+                            💊 Farmacias
                         </a>
                     </div>
                 </div>
@@ -127,6 +143,40 @@
                 Descargar App
                 <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
             </button>
+        </nav>
+
+        <!-- Menú Hamburguesa Móvil -->
+        <button id="mobile-menu-btn" class="md:hidden text-gray-800 focus:outline-none p-2 rounded-lg hover:bg-gray-100">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+    </header>
+
+    <!-- Menú Móvil Desplegable Actualizado -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 absolute w-full z-30 shadow-lg top-[73px]">
+        <div class="px-4 py-4 space-y-4 shadow-inner">
+            <a href="#" class="block font-semibold text-gray-700 hover:text-lc-green">Explorar</a>
+            <div class="border-t border-gray-100 pt-4">
+                <span class="block font-semibold text-gray-400 uppercase text-xs tracking-wider mb-2">Directorio</span>
+                <div class="grid grid-cols-2 gap-y-3 gap-x-2 pl-2">
+                    <a href="#" data-categoria="Todos" class="enlace-filtro text-gray-800 hover:text-lc-green font-bold col-span-2 border-b border-gray-100 pb-2">🌍 Ver Todos</a>
+                    <a href="#" data-categoria="Comidas" class="enlace-filtro text-gray-600 text-sm hover:text-lc-green flex items-center">☕ Comidas</a>
+                    <a href="#" data-categoria="Cafeterías" class="enlace-filtro text-gray-600 text-sm hover:text-lc-green flex items-center">🍰 Cafeterías</a>
+                    <a href="#" data-categoria="Canchas" class="enlace-filtro text-gray-600 text-sm hover:text-lc-green flex items-center">⚽ Canchas</a>
+                    <a href="#" data-categoria="Gimnasios" class="enlace-filtro text-gray-600 text-sm hover:text-lc-green flex items-center">🏋️ Gimnasios</a>
+                    <a href="#" data-categoria="Hospedajes" class="enlace-filtro text-gray-600 text-sm hover:text-lc-green flex items-center">🛏️ Hospedajes</a>
+                    <a href="#" data-categoria="Turismo" class="enlace-filtro text-gray-600 text-sm hover:text-lc-green flex items-center">🌿 Turismo</a>
+                    <a href="#" data-categoria="Panaderías" class="enlace-filtro text-gray-600 text-sm hover:text-lc-green flex items-center">🥖 Panaderías</a>
+                    <a href="#" data-categoria="Farmacias" class="enlace-filtro text-gray-600 text-sm hover:text-lc-green flex items-center">💊 Farmacias</a>
+                </div>
+            </div>
+            
+      <div class="w-full space-y-3">
+                    <!-- Nuevo Botón Único de Instalación PWA -->
+                    <button onclick="instalarApp()" class="w-full flex items-center justify-center py-4 px-4 bg-lc-green text-white rounded-xl hover:bg-green-800 transition-all font-bold shadow-lg transform hover:scale-105 duration-200">
+                        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        Instalar en mi teléfono
+                    </button>
+                </div>
         </nav>
 
         <!-- Menú Hamburguesa Móvil -->
@@ -322,6 +372,35 @@
                     modal.classList.add('opacity-0', 'pointer-events-none');
                     modal.classList.remove('modal-enter');
                 }, 200);
+            }
+        }
+// --- LÓGICA DE INSTALACIÓN PWA ---
+        
+        // 1. Registrar el Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(() => console.log("Service Worker registrado"));
+        }
+
+        // 2. Capturar el evento de instalación
+        let promptInstalacion;
+        window.addEventListener('beforeinstallprompt', (evento) => {
+            evento.preventDefault(); // Evita que Chrome muestre el aviso por su cuenta
+            promptInstalacion = evento; // Guardamos el evento para usarlo en nuestro botón
+        });
+
+        // 3. Función que se ejecuta al presionar el botón "Instalar en mi teléfono"
+        async function instalarApp() {
+            if (promptInstalacion) {
+                // Mostrar el aviso nativo de Android/Chrome
+                promptInstalacion.prompt();
+                const resultado = await promptInstalacion.userChoice;
+                promptInstalacion = null; // Limpiamos la variable
+                toggleModal('modal-descarga'); // Cerramos el modal
+            } else {
+                // FALLBACK IMPORTANTE PARA iPHONE O SI YA ESTÁ INSTALADA
+                // Apple no permite botones automáticos de instalación, hay que indicarle al usuario cómo hacerlo.
+                alert("Para instalar LosChilesGo:\n\n🍏 En iPhone (Safari): Toca el botón 'Compartir' (cuadrado con flecha hacia arriba) y selecciona 'Agregar a inicio'.\n\n🤖 En Android: Toca los 3 puntos del navegador y selecciona 'Instalar aplicación'.");
             }
         }
     </script>
