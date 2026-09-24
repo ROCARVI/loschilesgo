@@ -107,7 +107,7 @@ async function obtenerComercios(filtroCategoria = "Todos") {
 obtenerComercios("Todos");
 
 // 6. Darle vida a los botones del menú desplegable (Filtros)
-document.addEventListener('DOMContentLoaded', () => {
+<comment-tag id="1">document.addEventListener('DOMContentLoaded', () => {
     const botonesFiltro = document.querySelectorAll('.enlace-filtro');
     
     botonesFiltro.forEach(boton => {
@@ -128,4 +128,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-});
+});</comment-tag id="1" text="Elimina la envoltura 'document.addEventListener('DOMContentLoaded', ...)' de este bloque.
+
+Al usar 'type=\"module\"' en el HTML, el archivo se carga de forma diferida. Esto significa que cuando este código se ejecuta, el evento de carga ya pasó, provocando que los botones nunca reciban la instrucción del clic.
+
+Solución: Deja el código suelto, de esta manera:
+
+const botonesFiltro = document.querySelectorAll('.enlace-filtro');
+botonesFiltro.forEach(boton => {
+    // ...resto del código igual...
+});" type="suggestion">
