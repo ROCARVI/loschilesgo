@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LosChilesGo - Directorio Local</title>
+    
+    <!-- 1. Enlace a Tailwind CSS mediante CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 2. Configuración opcional de Tailwind (Para personalizar colores) -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              // Puedes usar los colores del escudo del cantón o algo tropical
+              'loschiles-verde': '#166534', 
+              'loschiles-naranja': '#ea580c',
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+    
+    <!-- Barra de Navegación -->
+    <nav class="bg-loschiles-verde text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold tracking-wider">📍 LosChilesGo</h1>
+            <button class="bg-loschiles-naranja hover:bg-orange-700 px-4 py-2 rounded shadow transition">
+                Agregar Negocio
+            </button>
+        </div>
+    </nav>
+
+    <!-- Contenedor Principal -->
+    <main class="container mx-auto mt-8 px-4">
+        
+        <!-- Sección de Bienvenida / Filtros -->
+        <section class="mb-10 text-center">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-4">¿Qué buscas en Los Chiles hoy?</h2>
+            <div class="flex justify-center gap-2 flex-wrap">
+                <span class="bg-white border border-gray-300 px-3 py-1 rounded-full text-sm shadow-sm cursor-pointer hover:bg-gray-100">☕ Cafeterías</span>
+                <span class="bg-white border border-gray-300 px-3 py-1 rounded-full text-sm shadow-sm cursor-pointer hover:bg-gray-100">⚽ Fútbol</span>
+                <span class="bg-white border border-gray-300 px-3 py-1 rounded-full text-sm shadow-sm cursor-pointer hover:bg-gray-100">🏋️ Gimnasios</span>
+                <span class="bg-white border border-gray-300 px-3 py-1 rounded-full text-sm shadow-sm cursor-pointer hover:bg-gray-100">🍹 Batidos</span>
+            </div>
+        </section>
+
+        <!-- Cuadrícula para mostrar los comercios (Aquí se inyectarán los datos de Firebase) -->
+        <div id="lista-comercios" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Ejemplo de Tarjeta de Comercio (Marcador visual mientras Firebase carga) -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
+                <div class="h-32 bg-gray-300 flex items-center justify-center">
+                    <span class="text-gray-500 text-sm">Foto del lugar</span>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-bold text-xl mb-1">Cancha La Frontera</h3>
+                    <p class="text-sm text-gray-600 mb-3">Deportes • A 2km</p>
+                    <div class="flex items-center text-yellow-500 mb-2">
+                        ⭐⭐⭐⭐☆ <span class="text-gray-400 text-xs ml-2">(12 reseñas)</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
+    <!-- Tu archivo principal de lógica donde está Firebase -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>
