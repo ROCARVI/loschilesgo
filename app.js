@@ -107,34 +107,22 @@ async function obtenerComercios(filtroCategoria = "Todos") {
 obtenerComercios("Todos");
 
 // 6. Darle vida a los botones del menú desplegable (Filtros)
-<comment-tag id="1">document.addEventListener('DOMContentLoaded', () => {
-    const botonesFiltro = document.querySelectorAll('.enlace-filtro');
-    
-    botonesFiltro.forEach(boton => {
-        boton.addEventListener('click', (evento) => {
-            evento.preventDefault(); 
-            
-            // CORRECCIÓN AQUÍ: Tomamos el atributo directamente del botón, no del "target" del clic. 
-            // Así ignoramos si el usuario le dio clic al emoji o al texto.
-            const categoriaSeleccionada = boton.getAttribute('data-categoria');
-            
-            // Llamamos a la función
-            obtenerComercios(categoriaSeleccionada);
-            
-            // Ocultar el menú móvil si estaba abierto
-            const mobileMenu = document.getElementById('mobile-menu');
-            if(mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-            }
-        });
-    });
-});</comment-tag id="1" text="Elimina la envoltura 'document.addEventListener('DOMContentLoaded', ...)' de este bloque.
-
-Al usar 'type=\"module\"' en el HTML, el archivo se carga de forma diferida. Esto significa que cuando este código se ejecuta, el evento de carga ya pasó, provocando que los botones nunca reciban la instrucción del clic.
-
-Solución: Deja el código suelto, de esta manera:
-
 const botonesFiltro = document.querySelectorAll('.enlace-filtro');
+
 botonesFiltro.forEach(boton => {
-    // ...resto del código igual...
-});" type="suggestion">
+    boton.addEventListener('click', (evento) => {
+        evento.preventDefault(); 
+        
+        // Tomamos el atributo directamente del botón
+        const categoriaSeleccionada = boton.getAttribute('data-categoria');
+        
+        // Llamamos a la función
+        obtenerComercios(categoriaSeleccionada);
+        
+        // Ocultar el menú móvil si estaba abierto
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+        }
+    });
+});
