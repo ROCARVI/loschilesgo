@@ -3,73 +3,331 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LosChilesGo - Directorio Local</title>
-    
-    <!-- 1. Enlace a Tailwind CSS mediante CDN -->
+    <title>LosChilesGo - Explora y Descubre</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- 2. Configuración opcional de Tailwind (Para personalizar colores) -->
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              // Puedes usar los colores del escudo del cantón o algo tropical
-              'loschiles-verde': '#166534', 
-              'loschiles-naranja': '#ea580c',
-            }
-          }
-        }
-      }
-    </script>
-</head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;0,900;1,900&display=swap" rel="stylesheet">
     
-    <!-- Barra de Navegación -->
-    <nav class="bg-loschiles-verde text-white p-4 shadow-md">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold tracking-wider">📍 LosChilesGo</h1>
-            <button class="bg-loschiles-naranja hover:bg-orange-700 px-4 py-2 rounded shadow transition">
-                Agregar Negocio
-            </button>
-        </div>
-    </nav>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'lc-green': '#007A33',     // Verde Naturaleza
+                        'lc-terra': '#B34728',     // Terracota La Tierra
+                        'lc-gold': '#FFB81C',      // Oro Solar Energía
+                        'lc-dark': '#0d1b14',      // Fondo oscuro para contraste
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .pattern-bg {
+            background-image: radial-gradient(#007A33 0.5px, transparent 0.5px), radial-gradient(#007A33 0.5px, #f8fafc 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            opacity: 0.03;
+        }
+        /* Animaciones para el dropdown y modal */
+        .dropdown-menu {
+            transition: all 0.2s ease-in-out;
+            transform-origin: top;
+        }
+        .group:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: scaleY(1);
+        }
+        .modal-enter { opacity: 1 !important; pointer-events: auto !important; }
+        .modal-enter-content { transform: scale(1) translateY(0) !important; opacity: 1 !important; }
+    </style>
+</head>
+<body class="relative text-gray-800 antialiased min-h-screen flex flex-col">
+    
+    <!-- Definición de SVGs Reutilizables (Isotipo de LosChilesGo) -->
+    <svg style="display: none;">
+        <defs>
+            <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00A854" />
+                <stop offset="100%" stop-color="#007A33" />
+            </linearGradient>
+            <linearGradient id="terraGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#D96645" />
+                <stop offset="100%" stop-color="#B34728" />
+            </linearGradient>
+            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFD15C" />
+                <stop offset="100%" stop-color="#FFB81C" />
+            </linearGradient>
 
-    <!-- Contenedor Principal -->
-    <main class="container mx-auto mt-8 px-4">
-        
-        <!-- Sección de Bienvenida / Filtros -->
-        <section class="mb-10 text-center">
-            <h2 class="text-3xl font-extrabold text-gray-900 mb-4">¿Qué buscas en Los Chiles hoy?</h2>
-            <div class="flex justify-center gap-2 flex-wrap">
-                <span class="bg-white border border-gray-300 px-3 py-1 rounded-full text-sm shadow-sm cursor-pointer hover:bg-gray-100">☕ Cafeterías</span>
-                <span class="bg-white border border-gray-300 px-3 py-1 rounded-full text-sm shadow-sm cursor-pointer hover:bg-gray-100">⚽ Fútbol</span>
-                <span class="bg-white border border-gray-300 px-3 py-1 rounded-full text-sm shadow-sm cursor-pointer hover:bg-gray-100">🏋️ Gimnasios</span>
-                <span class="bg-white border border-gray-300 px-3 py-1 rounded-full text-sm shadow-sm cursor-pointer hover:bg-gray-100">🍹 Batidos</span>
+            <symbol id="icon-loschilesgo" viewBox="0 0 200 200">
+                <path d="M100,185 C100,185 30,125 30,80 C30,41.3 61.3,10 100,10 C138.7,10 170,41.3 170,80 C170,125 100,185 100,185 Z" fill="rgba(0,0,0,0.1)" transform="translate(0, 5) scale(0.95)" transform-origin="center" />
+                <path d="M100,180 C100,180 30,120 30,75 C30,36.3 61.3,5 100,5 C138.7,5 170,36.3 170,75 C170,120 100,180 100,180 Z" fill="url(#greenGrad)" />
+                <circle cx="100" cy="75" r="45" fill="url(#terraGrad)" />
+                <path d="M85,50 L125,75 L85,100 Z" fill="url(#goldGrad)" />
+            </symbol>
+        </defs>
+    </svg>
+
+    <!-- Fondo de patrón general -->
+    <div class="fixed inset-0 pattern-bg pointer-events-none z-0"></div>
+
+    <!-- ENCABEZADO -->
+    <header class="bg-white px-4 md:px-8 py-4 border-b border-gray-100 flex items-center justify-between sticky top-0 z-40 shadow-sm relative z-40">
+        <!-- Logo Izquierda -->
+        <a href="#" class="flex items-center hover:opacity-90 transition-opacity">
+            <svg width="40" height="40" class="mr-2">
+                <use href="#icon-loschilesgo" />
+            </svg>
+            <div class="text-2xl md:text-3xl font-black tracking-tighter">
+                <span class="text-lc-green">LosChiles</span><span class="text-lc-terra italic">GO</span>
             </div>
-        </section>
-
-        <!-- Cuadrícula para mostrar los comercios (Aquí se inyectarán los datos de Firebase) -->
-        <div id="lista-comercios" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        </a>
+        
+        <!-- Navegación Desktop -->
+        <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-gray-600">
+            <a href="#" class="hover:text-lc-green transition-colors">Explorar</a>
             
-            <!-- Ejemplo de Tarjeta de Comercio (Marcador visual mientras Firebase carga) -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
-                <div class="h-32 bg-gray-300 flex items-center justify-center">
-                    <span class="text-gray-500 text-sm">Foto del lugar</span>
+            <!-- Menú Desplegable: Directorio -->
+            <div class="relative group cursor-pointer py-2">
+                <div class="flex items-center hover:text-lc-green transition-colors">
+                    Directorio
+                    <svg class="w-4 h-4 ml-1 text-gray-400 group-hover:text-lc-green transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
-                <div class="p-4">
-                    <h3 class="font-bold text-xl mb-1">Cancha La Frontera</h3>
-                    <p class="text-sm text-gray-600 mb-3">Deportes • A 2km</p>
-                    <div class="flex items-center text-yellow-500 mb-2">
-                        ⭐⭐⭐⭐☆ <span class="text-gray-400 text-xs ml-2">(12 reseñas)</span>
+                <!-- Contenido del Dropdown -->
+                <div class="dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-1 w-48 bg-white shadow-xl rounded-2xl opacity-0 invisible scale-y-95 border border-gray-100 overflow-hidden z-50">
+                    <div class="py-2">
+                        <a href="#" class="block px-5 py-3 text-sm text-gray-600 hover:bg-gray-50 hover:text-lc-green transition-colors font-medium flex items-center">
+                            <span class="text-lg mr-2">☕</span> Cafeterías
+                        </a>
+                        <a href="#" class="block px-5 py-3 text-sm text-gray-600 hover:bg-gray-50 hover:text-lc-green transition-colors font-medium flex items-center border-t border-gray-50">
+                            <span class="text-lg mr-2">⚽</span> Fútbol
+                        </a>
+                        <a href="#" class="block px-5 py-3 text-sm text-gray-600 hover:bg-gray-50 hover:text-lc-green transition-colors font-medium flex items-center border-t border-gray-50">
+                            <span class="text-lg mr-2">🏋️</span> Gimnasios
+                        </a>
+                        <a href="#" class="block px-5 py-3 text-sm text-gray-600 hover:bg-gray-50 hover:text-lc-green transition-colors font-medium flex items-center border-t border-gray-50">
+                            <span class="text-lg mr-2">🥤</span> Batidos
+                        </a>
                     </div>
                 </div>
             </div>
+
+            <a href="#" class="hover:text-lc-green transition-colors">Eventos</a>
             
+            <!-- Botón Funcional Descargar App -->
+            <button onclick="toggleModal('modal-descarga')" class="px-5 py-2.5 bg-lc-gold text-lc-dark rounded-full hover:bg-yellow-400 transition-colors shadow-sm font-bold flex items-center transform hover:scale-105 duration-200">
+                Descargar App
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            </button>
+        </nav>
+
+        <!-- Menú Hamburguesa Móvil -->
+        <button id="mobile-menu-btn" class="md:hidden text-gray-800 focus:outline-none p-2 rounded-lg hover:bg-gray-100">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+    </header>
+
+    <!-- Menú Móvil Desplegable -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 absolute w-full z-30 shadow-lg top-[73px]">
+        <div class="px-4 py-4 space-y-4 shadow-inner">
+            <a href="#" class="block font-semibold text-gray-700 hover:text-lc-green">Explorar</a>
+            <div class="border-t border-gray-100 pt-4">
+                <span class="block font-semibold text-gray-400 uppercase text-xs tracking-wider mb-2">Directorio</span>
+                <div class="grid grid-cols-2 gap-2 pl-2">
+                    <a href="#" class="text-gray-600 py-1 hover:text-lc-green">☕ Cafeterías</a>
+                    <a href="#" class="text-gray-600 py-1 hover:text-lc-green">⚽ Fútbol</a>
+                    <a href="#" class="text-gray-600 py-1 hover:text-lc-green">🏋️ Gimnasios</a>
+                    <a href="#" class="text-gray-600 py-1 hover:text-lc-green">🥤 Batidos</a>
+                </div>
+            </div>
+            <a href="#" class="block font-semibold text-gray-700 hover:text-lc-green border-t border-gray-100 pt-4">Eventos</a>
+            <button onclick="toggleModal('modal-descarga')" class="w-full mt-4 px-5 py-3 bg-lc-gold text-lc-dark rounded-xl font-bold flex items-center justify-center">
+                Descargar App
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- CUERPO PRINCIPAL -->
+    <main class="flex-grow relative z-10">
+        
+        <!-- Sección Hero / Banner -->
+        <div class="relative bg-lc-dark h-72 md:h-96 w-full flex items-center justify-center p-6 text-center overflow-hidden shadow-inner">
+            <!-- Imagen de fondo con opacidad baja y color base verde para teñirla -->
+            <div class="absolute inset-0 bg-lc-green mix-blend-multiply opacity-80 z-10"></div>
+            <div class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/0d1b14/ffffff?text=Paisaje+Los+Chiles')] bg-cover bg-center opacity-40 z-0"></div>
+            
+            <div class="relative z-20 max-w-2xl px-4 transform translate-y-4">
+                <span class="text-lc-gold font-bold tracking-widest uppercase text-sm mb-3 block drop-shadow-md">Cantón #14 de Alajuela</span>
+                <h1 class="text-4xl md:text-6xl font-black text-white mb-4 leading-tight drop-shadow-lg">Descubre <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-lc-gold">Los Chiles</span></h1>
+                <p class="text-gray-200 mb-8 md:text-lg font-medium drop-shadow text-opacity-90">Toda la información turística, comercio y naturaleza en la palma de tu mano.</p>
+            </div>
+        </div>
+
+        <!-- Directorio Dinámico (Datos de Firebase) -->
+        <div class="max-w-7xl mx-auto px-4 md:px-8 py-16">
+            
+            <div class="flex flex-col md:flex-row justify-between items-end mb-10 border-b border-gray-200 pb-4">
+                <div>
+                    <h2 class="text-3xl font-black text-gray-800">Directorio Local</h2>
+                    <p class="text-gray-500 mt-2">Apoya el comercio de nuestro cantón.</p>
+                </div>
+            </div>
+
+            <!-- Contenedor donde Firebase inyectará las tarjetas -->
+            <div id="lista-comercios" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Estado de Carga (Skeleton) -->
+                <div class="animate-pulse bg-white rounded-2xl p-4 shadow-sm border border-gray-100 h-80 flex flex-col">
+                    <div class="bg-gray-200 h-40 rounded-xl mb-4"></div>
+                    <div class="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
+                    <div class="h-4 bg-gray-200 rounded w-1/2 mb-auto"></div>
+                    <div class="h-10 bg-gray-200 rounded-xl w-full mt-4"></div>
+                </div>
+                <div class="animate-pulse bg-white rounded-2xl p-4 shadow-sm border border-gray-100 h-80 flex flex-col hidden sm:flex">
+                    <div class="bg-gray-200 h-40 rounded-xl mb-4"></div>
+                    <div class="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
+                    <div class="h-4 bg-gray-200 rounded w-1/2 mb-auto"></div>
+                    <div class="h-10 bg-gray-200 rounded-xl w-full mt-4"></div>
+                </div>
+                <div class="animate-pulse bg-white rounded-2xl p-4 shadow-sm border border-gray-100 h-80 flex flex-col hidden lg:flex">
+                    <div class="bg-gray-200 h-40 rounded-xl mb-4"></div>
+                    <div class="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
+                    <div class="h-4 bg-gray-200 rounded w-1/2 mb-auto"></div>
+                    <div class="h-10 bg-gray-200 rounded-xl w-full mt-4"></div>
+                </div>
+            </div>
+
         </div>
     </main>
 
-    <!-- Tu archivo principal de lógica donde está Firebase -->
+    <!-- PIE DE PÁGINA -->
+    <footer class="bg-lc-dark pt-16 pb-8 px-6 border-t-4 border-lc-gold relative z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-12 text-center md:text-left">
+            
+            <!-- Columna 1: Logo y Bio -->
+            <div class="flex flex-col items-center md:items-start md:col-span-2 pr-0 md:pr-10">
+                <a href="#" class="flex items-center mb-6 opacity-90 hover:opacity-100 transition-opacity">
+                    <svg width="48" height="48" class="mr-3">
+                        <use href="#icon-loschilesgo" />
+                    </svg>
+                    <div class="text-3xl font-black tracking-tighter">
+                        <span class="text-white">LosChiles</span><span class="text-lc-gold italic">GO</span>
+                    </div>
+                </a>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Conectando la naturaleza, la tierra y la energía de nuestra gente en un solo lugar. La plataforma definitiva para descubrir todo lo que el Cantón de Los Chiles tiene para ofrecer.
+                </p>
+            </div>
+
+            <!-- Columna 2: Navegación -->
+            <div class="flex flex-col text-sm space-y-3">
+                <h4 class="text-white font-bold mb-3 uppercase tracking-widest text-xs border-b border-gray-800 pb-2 inline-block">Navegación</h4>
+                <a href="#" class="text-gray-400 hover:text-lc-gold transition-colors">Inicio</a>
+                <a href="#" class="text-gray-400 hover:text-lc-gold transition-colors">Directorio Comercial</a>
+                <a href="#" class="text-gray-400 hover:text-lc-gold transition-colors">Turismo y Eventos</a>
+            </div>
+
+            <!-- Columna 3: Soporte -->
+            <div class="flex flex-col text-sm space-y-3">
+                <h4 class="text-white font-bold mb-3 uppercase tracking-widest text-xs border-b border-gray-800 pb-2 inline-block">Soporte</h4>
+                <a href="#" class="text-gray-400 hover:text-lc-gold transition-colors">Contacto</a>
+                <a href="#" class="text-gray-400 hover:text-lc-gold transition-colors">Términos de Uso</a>
+                <a href="#" class="text-gray-400 hover:text-lc-gold transition-colors">Política de Privacidad</a>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-800 pt-8 text-center flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto">
+            <span class="text-xs text-gray-500 mb-4 md:mb-0">
+                &copy; 2026 LosChilesGo. Todos los derechos reservados.
+            </span>
+            <div class="flex space-x-4">
+                <!-- Iconos sociales de relleno -->
+                <a href="#" class="text-gray-500 hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                </a>
+                <a href="#" class="text-gray-500 hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL DESCARGA APP -->
+    <div id="modal-descarga" class="fixed inset-0 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-lc-dark/60 backdrop-blur-sm" onclick="toggleModal('modal-descarga')"></div>
+        
+        <!-- Modal Content -->
+        <div class="bg-white rounded-3xl shadow-2xl p-8 max-w-sm w-full mx-4 relative z-10 transform scale-95 translate-y-4 transition-all duration-300" id="modal-descarga-content">
+            <!-- Cerrar Botón -->
+            <button onclick="toggleModal('modal-descarga')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 focus:outline-none p-1 rounded-full hover:bg-gray-100 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <div class="flex flex-col items-center text-center pt-4">
+                <div class="w-20 h-20 bg-gray-50 rounded-2xl shadow-soft flex items-center justify-center p-3 mb-6 border border-gray-100">
+                    <svg width="100%" height="100%"><use href="#icon-loschilesgo" /></svg>
+                </div>
+                <h3 class="text-2xl font-black text-gray-800 mb-2">Descarga <span class="text-lc-green">LosChiles</span><span class="text-lc-terra italic">GO</span></h3>
+                <p class="text-gray-500 mb-8 text-sm">Lleva todo el cantón en tu bolsillo. Muy pronto disponible en las tiendas oficiales.</p>
+                
+                <div class="w-full space-y-3">
+                    <button onclick="toggleModal('modal-descarga')" class="w-full flex items-center justify-center py-3 px-4 bg-gray-900 text-white rounded-xl hover:bg-black transition-colors">
+                        <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.19 2.31-.88 3.5-.8 1.14.07 2.12.44 2.89 1.13-2.58 1.57-2.14 4.88.66 6.01-.65 1.77-1.42 3.49-2.13 5.83zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.35-1.92 4.29-3.74 4.25z"/></svg>
+                        App Store
+                    </button>
+                    <button onclick="toggleModal('modal-descarga')" class="w-full flex items-center justify-center py-3 px-4 bg-lc-green text-white rounded-xl hover:bg-green-800 transition-colors">
+                        <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M3.13 21.93L13.73 15.8 10 12.08 3.13 21.93zM2 3v18c0 .35.15.67.4.88L10.74 12.8 2.01 4.07C2 4.38 2 3 2 3zM14.6 15.3l5.8-3.36c1.17-.67 1.17-1.76 0-2.44l-5.8-3.36L11.14 12l3.46 3.3zM3.4.19l7.73 7.73L14.6 4.46 4.34.19C3.99-.01 3.65-.05 3.4.19z"/></svg>
+                        Google Play
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS DE INTERFAZ -->
+    <script>
+        // Toggle Menú Móvil
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Función reutilizable para Modal
+        function toggleModal(modalID) {
+            const modal = document.getElementById(modalID);
+            const content = document.getElementById(modalID + '-content');
+            
+            if (modal.classList.contains('opacity-0')) {
+                // Abrir
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                modal.classList.add('modal-enter');
+                setTimeout(() => {
+                    content.classList.add('modal-enter-content');
+                }, 10);
+            } else {
+                // Cerrar
+                content.classList.remove('modal-enter-content');
+                setTimeout(() => {
+                    modal.classList.add('opacity-0', 'pointer-events-none');
+                    modal.classList.remove('modal-enter');
+                }, 200);
+            }
+        }
+    </script>
+
+    <!-- LÓGICA DE FIREBASE -->
+    <!-- Se enlazó tu archivo app.js externo -->
     <script type="module" src="app.js"></script>
 </body>
 </html>
