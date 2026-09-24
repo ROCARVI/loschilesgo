@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Le indica a los buscadores dónde encontrar tu mapa del sitio
+Sitemap: https://www.loschilesgo.com/sitemap.xml
