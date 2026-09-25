@@ -398,5 +398,15 @@
 
 <!-- LÓGICA DE FIREBASE -->
 <script type="module" src="app.js?v=1.0.2"></script>
+<script>
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+</script>
 </body>
 </html>
