@@ -382,31 +382,24 @@
             promptInstalacion = evento; // Guardamos el evento para usarlo en nuestro botón
         });
 
-        // 3. Función que se ejecuta al presionar el botón "Instalar en mi teléfono"
-        async function instalarApp() {
-            if (promptInstalacion) {
-                // Mostrar el aviso nativo de Android/Chrome
-                promptInstalacion.prompt();
-                const resultado = await promptInstalacion.userChoice;
-                promptInstalacion = null; // Limpiamos la variable
-                toggleModal('modal-descarga'); // Cerramos el modal
-            } else {
-                // FALLBACK IMPORTANTE PARA iPHONE O SI YA ESTÁ INSTALADA
-              alert("Para instalar LosChilesGo:\n\n 🍏 En iPhone (Safari): Toca el botón 'Compartir' (cuadrado con flecha hacia arriba) y selecciona 'Agregar a inicio'.\n\n 🤖 En Android: Toca los 3 puntos del navegador y selecciona 'Instalar aplicación'.");
-        }
-    </script>
+      // 3. Función que se ejecuta al presionar el botón "Instalar en mi teléfono"
+async function instalarApp() {
+    if (promptInstalacion) {
+        // Mostrar el aviso nativo de Android/Chrome
+        promptInstalacion.prompt();
+        const resultado = await promptInstalacion.userChoice;
+        promptInstalacion = null; // Limpiamos la variable
+        toggleModal('modal-descarga'); // Cerramos el modal
+    } else {
+        // FALLBACK IMPORTANTE PARA iPHONE O SI YA ESTÁ INSTALADA
+        alert("Para instalar LosChilesGo: \n\n 🍏 En iPhone (Safari): Toca el botón 'Compartir' (cuadrado con flecha hacia arriba) y selecciona 'Agregar a inicio'. \n\n 🤖 En Android: Toca los 3 puntos del navegador y selecciona 'Instalar aplicación'.");
+    }
+} // <--- FALTA ESTA LLAVE DE CIERRE QUE CORREGIMOS
+</script>
 
 <!-- LÓGICA DE FIREBASE -->
 <script type="module" src="app.js?v=1.0.2"></script>
-<script>
-  const menuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
+</footer>
 
-  if (menuBtn && mobileMenu) {
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-  }
-</script>
 </body>
 </html>
