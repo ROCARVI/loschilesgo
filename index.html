@@ -157,18 +157,29 @@
     <!-- CUERPO PRINCIPAL -->
     <main class="flex-grow relative z-10">
         
-        <!-- Sección Hero / Banner -->
-        <div class="relative bg-lc-dark h-72 md:h-96 w-full flex items-center justify-center p-6 text-center overflow-hidden shadow-inner">
-            <!-- Imagen de fondo con opacidad baja y color base verde para teñirla -->
-            <div class="absolute inset-0 bg-lc-green mix-blend-multiply opacity-80 z-10"></div>
-            <div class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/0d1b14/ffffff?text=Paisaje+Los+Chiles')] bg-cover bg-center opacity-40 z-0"></div>
-            
-            <div class="relative z-20 max-w-2xl px-4 transform translate-y-4">
-                <span class="text-lc-gold font-bold tracking-widest uppercase text-sm mb-3 block drop-shadow-md">El Cantón que sorprende</span>
-                <h1 class="text-4xl md:text-6xl font-black text-white mb-4 leading-tight drop-shadow-lg">Descubre <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-lc-gold">Los Chiles</span></h1>
-                <p class="text-gray-200 mb-8 md:text-lg font-medium drop-shadow text-opacity-90">Toda la información turística, comercio y naturaleza en la palma de tu mano.</p>
-            </div>
+       <!-- Sección Hero / Banner Principal -->
+<section class="relative bg-lc-dark text-white py-24 md:py-32 overflow-hidden">
+    <!-- Imagen de fondo del banner -->
+    <div class="absolute inset-0 z-0">
+        <img src="banner-inicio.jpg" alt="Fondo Los Chiles" class="w-full h-full object-cover opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-r from-lc-dark via-lc-dark/80 to-transparent"></div>
+    </div>
+
+    <!-- Contenido del Banner (Sin el título repetido) -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-8 text-center md:text-left">
+        <h1 class="text-4xl md:text-6xl font-black mb-4 tracking-tight">
+            Bienvenidos a <span class="text-lc-gold">Los Chiles</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-200 max-w-2xl mb-8">
+            El portal oficial para descubrir la naturaleza, cultura, gastronomía y los mejores comercios de nuestro cantón.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <a href="directorio.html" class="bg-lc-green hover:bg-emerald-700 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg transition-all text-center">
+                Ver Directorio
+            </a>
         </div>
+    </div>
+</section>
 <!-- ========================================== -->
 <!-- SECCIÓN 1: DESCUBRE LOS CHILES (3 Columnas)-->
 <!-- ========================================== -->
