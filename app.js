@@ -126,3 +126,16 @@ botonesFiltro.forEach(boton => {
         }
     });
 });
+document.addEventListener("DOMContentLoaded", () => {
+    if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+        const botonesDescarga = document.querySelectorAll('[onclick="toggleModal(\'modal-descarga\')"]');
+        botonesDescarga.forEach(btn => {
+            btn.style.display = 'none';
+        });
+        
+        const botonInstalarMovil = document.querySelector('[onclick="instalarApp()"]');
+        if(botonInstalarMovil) {
+            botonInstalarMovil.style.display = 'none';
+        }
+    }
+});
