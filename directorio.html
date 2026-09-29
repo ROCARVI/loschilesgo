@@ -271,7 +271,44 @@
             <div class="h-4 bg-gray-200 rounded w-1/2 mb-auto"></div>
             <div class="h-10 bg-gray-200 rounded-xl w-full mt-4"></div>
         </div>
+        <!-- SECCIÓN DE RESEÑAS (Copia esto en tu index.html donde quieras que aparezca el formulario y las opiniones) -->
+<div class="max-w-3xl mx-auto px-4 py-8">
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mt-8">
+        <h3 class="text-xl font-bold text-gray-800 mb-4">Deja tu reseña</h3>
         
+        <form id="form-resena" class="space-y-4">
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Tu nombre</label>
+                <input type="text" id="nombre-usuario" required class="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-lc-green outline-none">
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Calificación</label>
+                <select id="calificacion-usuario" class="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-lc-green outline-none">
+                    <option value="5">★★★★★ (Excelente)</option>
+                    <option value="4">★★★★☆ (Muy bueno)</option>
+                    <option value="3">★★★☆☆ (Bueno)</option>
+                    <option value="2">★★☆☆☆ (Regular)</option>
+                    <option value="1">★☆☆☆☆ (Malo)</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Comentario</label>
+                <textarea id="comentario-usuario" rows="3" required class="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-lc-green outline-none" placeholder="Cuéntanos tu experiencia..."></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-lc-green text-white font-bold py-3 rounded-xl hover:bg-green-800 transition-colors shadow-sm">
+                Enviar Reseña
+            </button>
+        </form>
+    </div>
+
+    <!-- Contenedor donde se mostrarán las reseñas guardadas automáticamente -->
+    <div id="lista-resenas" class="mt-6 space-y-4">
+        <!-- Aquí se inyectarán las opiniones -->
+    </div>
+</div>
     </div>
 </div>
 
