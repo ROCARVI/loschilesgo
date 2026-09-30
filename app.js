@@ -4,7 +4,7 @@ import { getFirestore, collection, getDocs, query, where } from "https://www.gst
 
 // 2. Tu configuración exacta de LosChilesGo
 const firebaseConfig = {
-    apiKey: "AIzaSyCiHOa683iPjz5R8WZ59DD2vsbCvWHpVXU",
+    apiKey: "AIzaSyCUJqwOrjRKjUI0P4VSjBWWUiKVWyDFSMw",
     authDomain: "loschilesgo.firebaseapp.com",
     projectId: "loschilesgo",
     storageBucket: "loschilesgo.firebasestorage.app",
